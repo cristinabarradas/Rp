@@ -1,13 +1,13 @@
-include("../src/NSGA2CGP.jl")
+#include("../src/NSGA2CGP.jl")
 using DataFrames
 using Distributions
-using .NSGA2CGP
+using NSGA2CGP
 using ArgParse
 import Random
-using CartesianGeneticProgramming
+#using CartesianGeneticProgramming
 using Cambrian
 import Cambrian.mutate
-import RDatasets
+#import RDatasets
 import Pkg
 
 println("finish import")
@@ -99,8 +99,19 @@ function evaluate(ind::NSGA2CGPInd)
      [accuracy,-surplus,missed]
 end
 
+function safe_eval(i::NSGA2CGPInd)
+    try
+        fits = evaluate(i)
+        println(fits)
+        return fits
+    catch e
+        println("error")
+        return [-Inf, -Inf, -Inf]
+    end
+end
+
 cfg = get_config("cfg/BuffersNSGA2.yaml", id="run1")
-fit(i::NSGA2CGPInd) = evaluate(i) #compute the fitnes of an individual with the function evaluate
+fit(i::NSGA2CGPInd) = safe_eval(i) #compute the fitnes of an individual with the function evaluate
 i = NSGA2CGPInd(cfg)#create  a new individual
 
 inputs = rand(cfg.n_in)
@@ -113,6 +124,3 @@ println(fitness)
 mutate(i::NSGA2CGPInd) = goldman_mutate(cfg, i)
 e = NSGA2CGPEvolution(cfg, fit)
 run!(e)
-
-
-

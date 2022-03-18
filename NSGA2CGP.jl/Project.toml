@@ -1,0 +1,12 @@
+name = "NSGA2CGP"
+uuid = "3d5e11d3-0901-4b9e-a1b2-83ee77d6b063"
+authors = ["Dennis Wilson <d9w@pm.me>"]
+version = "0.1.0"
+
+[deps]
+ArgParse = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
+Cambrian = "7f27c84d-2d74-42e5-be5f-94f6748267f3"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
